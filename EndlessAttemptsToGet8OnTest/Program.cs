@@ -17,19 +17,25 @@ namespace EndlessAttemptsToGet8OnTest
         /// <returns>Считанное число</returns>
         public static int ReadInt(string message, int minValue = 0, int maxValue = 1000000)
         {
-            int result;
-            bool isCorrect = false;
             do
             {
                 Console.Write(message);
-                if (int.TryParse(Console.ReadLine(), out result) &&
-                    (result >= minValue && result <= maxValue))
-                    isCorrect = true;
+                if (int.TryParse(Console.ReadLine(), out int result) &&
+                        (result >= minValue && result <= maxValue))
+                    return result;
                 else
                     Console.WriteLine("Неверный формат ввода!");
-            } while (!isCorrect);
+            } while (true);
 
+            /*
+            Мой вариант цикла ввода числа:
+            int result;
+            Console.Write(message);
+            while (!int.TryParse(Console.ReadLine(), out result) ||
+                   !(result >= minValue && result <= maxValue)
+                Console.Write("Неверный формат ввода. Введите снова: ");
             return result;
+            */
         }
 
         /// <summary>

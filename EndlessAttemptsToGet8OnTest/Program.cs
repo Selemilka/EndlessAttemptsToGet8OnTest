@@ -75,7 +75,7 @@ namespace EndlessAttemptsToGet8OnTest
         ///     Метод, удаляющий все отрицательные числа в массиве
         /// </summary>
         /// <param name="array">Массив,</param>
-        public static void ShiftArray(ref double[] array)
+        public static void ShiftArray(double[] array)
         {
             double[] resultArray = new double[array.Length];
             int index = 0;
@@ -85,7 +85,7 @@ namespace EndlessAttemptsToGet8OnTest
                     resultArray[index++] = x;
 
             Array.Resize(ref resultArray, index);
-            array = resultArray;
+            resultArray.CopyTo(array, 0);
             /* 
              * Если не использовать метод Array.Resize:
             int[] array = new int[index];
@@ -104,7 +104,7 @@ namespace EndlessAttemptsToGet8OnTest
                 double[] a = CreateArray(k);
                 Console.WriteLine("Исходный массив: ");
                 ShowArray(a);
-                ShiftArray(ref a);
+                ShiftArray(a);
                 Console.WriteLine("Полученный массив: ");
                 ShowArray(a);
 

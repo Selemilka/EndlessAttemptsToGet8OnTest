@@ -26,7 +26,7 @@ namespace EndlessAttemptsToGet8OnTest
                     (result >= minValue && result <= maxValue))
                     isCorrect = true;
                 else
-                    Console.WriteLine("Неверный формат ввода!!");
+                    Console.WriteLine("Неверный формат ввода!");
             } while (!isCorrect);
 
             return result;

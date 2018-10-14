@@ -49,7 +49,7 @@ namespace EndlessAttemptsToGet8OnTest
             double denominator = -1;
             for (int i = 0; i < n; ++i)
             {
-                array[i] = 1d / denominator;
+                array[i] = 1 / denominator;
                 denominator = (Math.Abs(denominator) + 2) * (-Math.Sign(denominator));
             }
             return array;

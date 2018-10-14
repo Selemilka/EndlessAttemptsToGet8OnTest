@@ -9,16 +9,13 @@ namespace EndlessAttemptsToGet8OnTest
     class Program
     {
         /// <summary>
-        ///     Минимальный и максимальный размер массива (допустимый ввод)
-        /// </summary>
-        const int MinCorrectValue = 1, MaxCorrectValue = 1000000;
-
-        /// <summary>
         ///     Метод, считвыающий целое число
         /// </summary>
         /// <param name="message">Сообщение, выводящееся на экран перед вводом</param>
+        /// <param name="minValue">Минимальное значение введённого числа</param>
+        /// <param name="maxValue">Максимальное значение введённого числа</param>
         /// <returns>Считанное число</returns>
-        public static int ReadInt(string message)
+        public static int ReadInt(string message, int minValue = 0, int maxValue = 1000000)
         {
             int result;
             bool isCorrect = false;
@@ -26,7 +23,7 @@ namespace EndlessAttemptsToGet8OnTest
             {
                 Console.Write(message);
                 if (int.TryParse(Console.ReadLine(), out result) &&
-                    (result >= MinCorrectValue && result <= MaxCorrectValue))
+                    (result >= minValue && result <= maxValue))
                     isCorrect = true;
                 else
                     Console.WriteLine("Неверный формат ввода!!");

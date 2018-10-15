@@ -35,10 +35,11 @@ namespace AnotherOneTinyAttempt
                 double fraction = i + 1; //Значение дроби при k = 0
                 for (int k = 1; k <= i; ++k)
                 {
-                    fraction = fraction / Math.Max((i - k), 1) * (k + 1);
+                    fraction = fraction * Math.Max((i - k + 1), 1) / (k + 1);
                     sum += fraction * r[i - k];
                 }
-                r[i] = -1d / (n + 1) * sum;
+                r[i] = -1d / (i + 1) * sum;
+                Console.WriteLine($"r[{i}] = {r[i]}");
             }
             s1 = 0;
             s2 = 0;

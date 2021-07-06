@@ -9,30 +9,33 @@ namespace EndlessAttemptsToGet8OnTest
     class Program
     {
         /// <summary>
-        ///     Минимальный и максимальный размер массива (допустимый ввод)
-        /// </summary>
-        const int MinCorrectValue = 1, MaxCorrectValue = 1000000;
-
-        /// <summary>
         ///     Метод, считвыающий целое число
         /// </summary>
         /// <param name="message">Сообщение, выводящееся на экран перед вводом</param>
+        /// <param name="minValue">Минимальное значение введённого числа</param>
+        /// <param name="maxValue">Максимальное значение введённого числа</param>
         /// <returns>Считанное число</returns>
-        public static int ReadInt(string message)
+        public static int ReadInt(string message, int minValue = 0, int maxValue = 1000000)
         {
-            int result;
-            bool isCorrect = false;
             do
             {
                 Console.Write(message);
-                if (int.TryParse(Console.ReadLine(), out result) &&
-                    (result >= MinCorrectValue && result <= MaxCorrectValue))
-                    isCorrect = true;
+                if (int.TryParse(Console.ReadLine(), out int result) &&
+                        (result >= minValue && result <= maxValue))
+                    return result;
                 else
-                    Console.WriteLine("Неверный формат ввода!!");
-            } while (!isCorrect);
+                    Console.WriteLine("Неверный формат ввода!");
+            } while (true);
 
+            /*
+            Мой вариант цикла ввода числа:
+            int result;
+            Console.Write(message);
+            while (!int.TryParse(Console.ReadLine(), out result) ||
+                   !(result >= minValue && result <= maxValue)
+                Console.Write("Неверный формат ввода. Введите снова: ");
             return result;
+            */
         }
 
         /// <summary>
@@ -46,7 +49,7 @@ namespace EndlessAttemptsToGet8OnTest
             double denominator = -1;
             for (int i = 0; i < n; ++i)
             {
-                array[i] = 1d / denominator;
+                array[i] = 1 / denominator;
                 denominator = (Math.Abs(denominator) + 2) * (-Math.Sign(denominator));
             }
             return array;
@@ -72,7 +75,7 @@ namespace EndlessAttemptsToGet8OnTest
         ///     Метод, удаляющий все отрицательные числа в массиве
         /// </summary>
         /// <param name="array">Массив,</param>
-        public static void ShiftArray(ref double[] array)
+        public static void ShiftArray(double[] array)
         {
             double[] resultArray = new double[array.Length];
             int index = 0;
@@ -82,7 +85,7 @@ namespace EndlessAttemptsToGet8OnTest
                     resultArray[index++] = x;
 
             Array.Resize(ref resultArray, index);
-            array = resultArray;
+            resultArray.CopyTo(array, 0);
             /* 
              * Если не использовать метод Array.Resize:
             int[] array = new int[index];
@@ -101,7 +104,7 @@ namespace EndlessAttemptsToGet8OnTest
                 double[] a = CreateArray(k);
                 Console.WriteLine("Исходный массив: ");
                 ShowArray(a);
-                ShiftArray(ref a);
+                ShiftArray(a);
                 Console.WriteLine("Полученный массив: ");
                 ShowArray(a);
 
